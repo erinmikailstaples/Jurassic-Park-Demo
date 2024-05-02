@@ -31,7 +31,7 @@ col2.metric("Number of Dinosaurs", "29", "-2")
 col3.metric("Guests In Park", "112", "-11%")
 
 # Row B
-dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', usecols=['name', 'diet', 'lived_in','type', 'length','taxonomy', 'named_by', 'species', 'link']
+dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', usecols=['name', 'diet', 'lived_in','type', 'length','taxonomy', 'named_by', 'species', 'link'])
 
 
 
