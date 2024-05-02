@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plost
+import alstair as alt
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -44,7 +45,7 @@ with c1:
     st.markdown('### All Dinosaurs')
     plost.bar_chart(
     data='dino_data',
-    value='period'
+    value='period',
     legend=None,
     height=345,
     use_container_width=True)
