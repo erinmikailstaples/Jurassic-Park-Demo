@@ -24,6 +24,7 @@ plot_height = st.sidebar.slider('Specify plot height', 200, 500, 250)
 st.sidebar.markdown('''
 ---
 Created with ❤️ by [Erin Mikail Staples](https://erinmikailstaples.com).
+Based off of the [Streamlit App Starter Kit](https://github.com/streamlit/app-starter-kit) by [Data Professor](https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q).
 ''')
 
 
@@ -35,14 +36,14 @@ col2.metric("Wind", "9 mph", "-8%")
 col3.metric("Humidity", "86%", "4%")
 
 # Row B
-seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/master/data/seattle-weather.csv', parse_dates=['date'])
-stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
+dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', parse_dates=['date'])
+stocks = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv')
 
 c1, c2 = st.columns((7,3))
 with c1:
     st.markdown('### Heatmap')
     plost.time_hist(
-    data=seattle_weather,
+    data=dino_data,
     date='date',
     x_unit='week',
     y_unit='day',
@@ -54,7 +55,7 @@ with c1:
 with c2:
     st.markdown('### Donut chart')
     plost.donut_chart(
-        data=stocks,
+        data=dino_data,
         theta=donut_theta,
         color='company',
         legend='bottom', 
@@ -62,4 +63,4 @@ with c2:
 
 # Row C
 st.markdown('### Line chart')
-st.line_chart(seattle_weather, x = 'date', y = plot_data, height = plot_height)
+st.line_chart(dino_data, x = 'date', y = plot_data, height = plot_height)
