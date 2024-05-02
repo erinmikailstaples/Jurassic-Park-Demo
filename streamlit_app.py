@@ -33,9 +33,9 @@ col3.metric("Guests In Park", "112", "-11%")
 # Row B
 dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', usecols=['name', 'period', 'diet', 'weight', 'height', 'length', 'speed', 'era', 'continent', 'description'])
 
-c1  = st.columns((7,3))
 
-with c1:
-    st.markdown('### All Dinosaurs')
-    st.bar_chart(dino_data['period'], height=345, use_container_width=True)
+
+st.markdown('### All Dinosaurs')
+    
+st.bar_chart(dino_data['period'], height=345, use_container_width=True)
 
