@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plost
-import alstair as alt
+import altair as alt
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
