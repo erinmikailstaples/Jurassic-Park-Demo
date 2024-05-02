@@ -9,13 +9,13 @@ st.title('Jurassic Park Control Room')
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     
-st.sidebar.header('current status')
+st.sidebar.header('Control Panel')
 
 st.sidebar.subheader('Heat map parameter')
-time_hist_color = st.sidebar.selectbox('Color by', ('temp_min', 'temp_max')) 
+time_hist_color = st.sidebar.selectbox('Color by', 'length') 
 
 st.sidebar.subheader('Donut chart parameter')
-donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
+donut_theta = st.sidebar.selectbox('Select data', ('period', 'q3'))
 
 st.sidebar.subheader('Line chart parameters')
 plot_data = st.sidebar.multiselect('Select data', ['temp_min', 'temp_max'], ['temp_min', 'temp_max'])
@@ -29,38 +29,23 @@ Based off of the [Streamlit App Starter Kit](https://github.com/streamlit/app-st
 
 
 # Row A
-st.markdown('### Metrics')
+st.markdown('## Recent Events')
 col1, col2, col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+col1.metric("Recent Incidents", "13", "1")
+col2.metric("Number of Dinosaurs", "29", "-2")
+col3.metric("Guests In Park", "112", "-11%")
 
 # Row B
-dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', parse_dates=['date'])
-stocks = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv')
+dino_data = pd.read_csv('https://raw.githubusercontent.com/erinmikailstaples/Jurassic-Park-Demo/main/dinosaur-data.csv', parse_names=['name'])
 
-c1, c2 = st.columns((7,3))
+c1  = st.columns((7,3))
+
 with c1:
-    st.markdown('### Heatmap')
-    plost.time_hist(
-    data=dino_data,
-    date='date',
-    x_unit='week',
-    y_unit='day',
-    color=time_hist_color,
-    aggregate='median',
+    st.markdown('### All Dinosaurs')
+    plost.bar_chart(
+    data='dino_data',
+    value='period'
     legend=None,
     height=345,
     use_container_width=True)
-with c2:
-    st.markdown('### Donut chart')
-    plost.donut_chart(
-        data=dino_data,
-        theta=donut_theta,
-        color='company',
-        legend='bottom', 
-        use_container_width=True)
 
-# Row C
-st.markdown('### Line chart')
-st.line_chart(dino_data, x = 'date', y = plot_data, height = plot_height)
